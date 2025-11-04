@@ -84,10 +84,28 @@ iframe {
     --text-color: #ffffff;
 }
 
+.latte {
+    --base: #eff1f5;
+    --surface: #acb0be;
+    --text-color: #4c4f69;
+}
+
+.frappe {
+    --base: #303446;
+    --surface: #51576d;
+    --text-color: #c6d0f5;
+}
+
 .macchiato {
     --base: #24273a;
     --surface: #363a4f;
-    --text-color: #ffffff;
+    --text-color: #cad3f5;
+}
+
+.mocha {
+    --base: #1e1e2e;
+    --surface: #313244;
+    --text-color: #cdd6f4;
 }
 
 #search {

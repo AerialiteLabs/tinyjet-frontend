@@ -1,8 +1,8 @@
 <head>
-  <title>TinyJet Proxy</title>
+  <title>Loading...</title>
   <link rel="icon" href="https://cdn.jsdelivr.net/gh/mercuryworkshop/scramjet-app@latest/public/favicon.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AerialiteLabs/tinyjet-frontend@latest/style.css">
+  <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
@@ -14,20 +14,26 @@
   </header>
   <div id="overlay">
     <div id="settings">
-      <h3>Settings</h3>
-        <h4>WISP Server</h4>
-        <form id="wispInput">
+      <h3 style="margin:auto;">Settings</h3>
+      <br>
+        <h4 style="margin:auto;">WISP Server</h4>
+        <br>
+        <form style="margin:auto;"id="wispInput">
           <input id="websocket" type="text" placeholder="wss://gointospace.app/wisp/" value="wss://gointospace.app/wisp/">
           <button type="submit">Set WISP</button>
         </form>
-      <h4>Transport Protocol</h4>
-      <label>
-        <input type="radio" name="transport" value="epoxy" checked> Epoxy (Default)
-      </label><br>
-      <label>
-        <input type="radio" name="transport" value="libcurl"> Libcurl
-      </label>
-      <h4>Search Engine</h4>
+      <br>
+      <h4 style="margin:auto;">Transport Protocol</h4>
+      <br>
+      <div style="text-align:center;">
+        <ul style="display:inline-block; text-align:left; list-style-type:none; padding:0; margin:0;">
+          <li><input type="radio" name="transport" value="epoxy" checked> Epoxy (Default)</li>
+          <li><input type="radio" name="transport" value="libcurl"> Libcurl</li>
+        </ul>
+      </div>
+      <br>
+      <h4 style="margin:auto;">Search Engine</h4>
+      <br>
       <select id="searchEnginePicker">
         <option value="google">Google</option>
         <option value="bing">Bing</option>
@@ -36,7 +42,21 @@
         <option value="custom">Custom</option>
       </select>
       <input id="customSearch" type="text" placeholder="https://search.example.com/search?q=%s" style="display:none; width:100%; margin-top:8px;" />
-      <h4>Theme</h4>
+      <br>
+      <h4 style="margin:auto;">Tab Cloaking</h4>
+      <br>
+      <label for="tabCloak">Title</label>
+      <input id="tabCloak" type="text" placeholder="Khan Academy" style="width:100%; margin-bottom:8px;" />
+      <label for="tabCloakIcon">Icon (URL)</label>
+      <input id="tabCloakIcon" type="text" placeholder="https://khanacademy.org/favicon.ico" style="width:100%; margin-bottom:8px;" />
+      <div class="flex-row" style="margin:auto; margin-bottom:12px;">
+        <button id="saveTabCloakBtn" type="button">Save Settings</button>
+        <button id="clearTabCloakBtn" type="button">Clear Settings</button>
+        <button id="previewTabCloakBtn" type="button">Preview</button>
+      </div>
+      <br>
+      <h4 style="margin:auto;">Theme</h4>
+      <br>
       <select id="themePicker">
         <option value="default">Default</option>
         <option value="latte">Catppuccin Latte</option>
@@ -47,7 +67,9 @@
         <option value="aerialite">Aerialite Labs</option>
       </select>
       <div id="customThemeSection" style="margin-top:12px;">
-        <h4>Custom Themes</h4>
+        <br>
+        <h4 class="flex-row" style="margin:auto;">Custom Themes</h4> <!--not even supposed to be a flex row i'm just lazy-->
+        <br>
         <input id="customThemeName" type="text" placeholder="Theme name" style="width:100%; margin-bottom:6px;" />
         <label style="display:block; font-size:12px; margin-bottom:4px;">Base color</label>
         <input id="customThemeBase" type="color" value="#ffffff" style="width:100%; height:30px; margin-bottom:6px;" />
@@ -55,17 +77,31 @@
         <input id="customThemeSurface" type="color" value="#f6f6f6" style="width:100%; height:30px; margin-bottom:6px;" />
         <label style="display:block; font-size:12px; margin-bottom:4px;">Text color</label>
         <input id="customThemeText" type="color" value="#111111" style="width:100%; height:30px; margin-bottom:8px;" />
-        <div style="display:flex; gap:8px; margin-bottom:8px;">
+        <div class="flex-row" style="margin:auto; margin-bottom:12px;">
           <button id="saveCustomThemeBtn" type="button">Save Theme</button>
           <button id="applyCustomThemePreviewBtn" type="button">Preview</button>
         </div>
         <label style="display:block; font-size:12px; margin-bottom:4px;">Saved themes</label>
         <select id="customThemesList" style="width:100%; margin-bottom:8px;"></select>
-        <div style="display:flex; gap:8px;">
+        <div class="flex-row" style="margin:auto; margin-bottom:12px;">
           <button id="applyCustomThemeBtn" type="button">Apply</button>
           <button id="deleteCustomThemeBtn" type="button">Delete</button>
         </div>
       </div>
+      <br>
+      <h3 style="margin:auto;">TinyJet</h3>
+      <p style="text-align:center;" id="version">Unable to retrieve version.</p>
+      <h6 style="margin:auto; font-weight:normal; text-align:center;">A teeny-tiny simple Scramjet implementation and frontend that can be statically hosted.</h6>
+      <br>
+      <h4 style="margin:auto;">Credits</h4>
+      <div style="text-align:center;">
+        <ul style="display:inline-block; text-align:left; list-style-type:none; padding:0;">
+          <li><a href="https://github.com/Sophie">Sophie:</a> Maintainer</li>
+          <li><a href="https://github.com/xmb9">xmb9:</a> Co-maintainer</li>
+          <li><a href="https://github.com/MercuryWorkshop">Mercury Workshop:</a> <a href="https://github.com/MercuryWorkshop/scramjet">Scramjet</a>, <a href="https://github.com/MercuryWorkshop/wisp-protocol">WISP</a></li>
+        </ul>
+      </div>
+      <p style="margin:auto; text-align:center;">Developed by <a href="https://aerialite.dev">Aerialite Labs</a></p>
     </div>
   </div>
   <iframe id="iframe" width="100%"></iframe>
@@ -73,6 +109,24 @@
   <script src="https://cdn.jsdelivr.net/gh/AerialiteLabs/tinyjet-frontend@latest/tinyjet/scramjet.all.js" defer></script>
   <script type="module" defer>
     import * as BareMux from "https://cdn.jsdelivr.net/gh/AerialiteLabs/tinyjet-frontend@latest/tinyjet/index.mjs";
+
+    let version = "";
+
+    (async function fetchVersion() {
+      try {
+        const resp = await fetch('https://api.github.com/repos/AerialiteLabs/tinyjet-frontend/commits?per_page=1');
+        if (!resp.ok) console.error(`github api returned ${resp.status}`);
+        const data = await resp.json();
+        const sha = Array.isArray(data) && data[0] && data[0].sha ? data[0].sha : (data.sha || '');
+        if (sha) {
+          version = sha.slice(0, 7);
+          document.getElementById('version').textContent = version;
+        }
+      } catch (e) {
+        console.debug('could not fetch version from github:', e.message);
+        version = "Unable to retrieve version info.";
+      }
+    })();
 
     const { ScramjetController } = $scramjetLoadController();
     const scramjet = new ScramjetController({ 
@@ -108,6 +162,17 @@
     const customThemesList = document.getElementById('customThemesList');
     const applyCustomThemeBtn = document.getElementById('applyCustomThemeBtn');
     const deleteCustomThemeBtn = document.getElementById('deleteCustomThemeBtn');
+    const tabCloakInput = document.getElementById('tabCloak');
+    const tabCloakIconInput = document.getElementById('tabCloakIcon');
+    const saveTabCloakBtn = document.getElementById('saveTabCloakBtn');
+    const previewTabCloakBtn = document.getElementById('previewTabCloakBtn');
+    const clearTabCloakBtn = document.getElementById('clearTabCloakBtn');
+
+    const originalTitle = "TinyJet Proxy";
+    function getFaviconElement() {
+      return document.querySelector('link[rel~="icon"]');
+    }
+    const originalFavicon = getFaviconElement() ? getFaviconElement().getAttribute('href') : null;
 
     gear.onclick = () => { overlay.classList.toggle("active"); settings.classList.toggle("open") }
     overlay.onclick = e => { if (e.target === overlay) overlay.classList.remove("active"); settings.classList.remove("open") }
@@ -197,6 +262,65 @@
       });
     }
 
+    function applyFavicon(url) {
+      if (!url) return;
+      let link = getFaviconElement();
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        document.head.appendChild(link);
+      }
+      link.href = url;
+    }
+
+    function applyTabCloak(title, iconUrl) {
+      if (title) {
+        document.title = title;
+      } else {
+        document.title = originalTitle;
+      }
+      if (iconUrl) applyFavicon(iconUrl);
+    }
+
+    function restoreOriginalTab() {
+      document.title = originalTitle;
+      if (originalFavicon) applyFavicon(originalFavicon);
+    }
+
+    function initTabCloak() {
+      const savedTitle = localStorage.getItem('cloakedTitle');
+      const savedIcon = localStorage.getItem('cloakedIcon');
+      if (savedTitle || savedIcon) {
+        applyTabCloak(savedTitle, savedIcon);
+        tabCloakInput.value = savedTitle || '';
+        tabCloakIconInput.value = savedIcon || '';
+      }
+    }
+
+    saveTabCloakBtn.addEventListener('click', () => {
+      const title = tabCloakInput.value.trim();
+      const icon = tabCloakIconInput.value.trim();
+      if (!title && !icon) return alert('Enter a title or icon URL to save.');
+      if (title) localStorage.setItem('cloakedTitle', title); else localStorage.removeItem('cloakedTitle');
+      if (icon) localStorage.setItem('cloakedIcon', icon); else localStorage.removeItem('cloakedIcon');
+      applyTabCloak(title, icon);
+    });
+
+    previewTabCloakBtn.addEventListener('click', () => {
+      const title = tabCloakInput.value.trim();
+      const icon = tabCloakIconInput.value.trim();
+      applyTabCloak(title || originalTitle, icon || originalFavicon);
+    });
+
+    clearTabCloakBtn.addEventListener('click', () => {
+      localStorage.removeItem('cloakedTitle');
+      localStorage.removeItem('cloakedIcon');
+      tabCloakInput.value = '';
+      tabCloakIconInput.value = '';
+      restoreOriginalTab();
+    });
+
+
     saveCustomThemeBtn.addEventListener('click', () => {
       const name = customThemeName.value.trim();
       if (!name) return alert('Please enter a theme name.');
@@ -252,6 +376,7 @@
 
     populateCustomThemes();
     initSelectedTheme();
+    initTabCloak();
 
     setTransport(currentTransport); 
         

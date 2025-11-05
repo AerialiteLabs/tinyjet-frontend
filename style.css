@@ -137,9 +137,35 @@ iframe {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-row > * {
+    flex: 0 0 auto;
 }
 
 #search {
     width: 100%;
     margin: 0;
+}
+
+a:link {
+  color: #5FD7FF;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #4ca7c5;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #cdd6f4;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #FFFFFF;
+  text-decoration: underline;
 }
